@@ -1,0 +1,246 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@example.com",
+      "password": "adminpass123",
+      "name": "Admin",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "email": "user@example.com",
+      "password": "userpass123",
+      "name": "Kullanıcı",
+      "role": "user"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Apple iPhone 15",
+      "category": "Elektronik",
+      "price": 450000,
+      "stock": 25,
+      "description": "Son model iPhone akıllı telefon",
+      "imageUrl": "https://picsum.photos/id/1/200/300",
+      "uniqueId": "1-p1-0-id-asc"
+    },
+    {
+      "id": "2",
+      "name": "Samsung Galaxy S24",
+      "category": "Elektronik",
+      "price": 35000,
+      "stock": 30,
+      "description": "Samsung'un amiral gemisi akıllı telefonu",
+      "imageUrl": "https://picsum.photos/id/2/200/300"
+    },
+    {
+      "id": "3",
+      "name": "Logitech MX Master 3",
+      "category": "Bilgisayar Aksesuarları",
+      "price": 2500,
+      "stock": 40,
+      "description": "Profesyonel kablosuz mouse",
+      "imageUrl": "https://picsum.photos/id/3/200/300"
+    },
+    {
+      "id": "4",
+      "name": "Sony WH-1000XM5",
+      "category": "Ses Sistemleri",
+      "price": 8000,
+      "stock": 15,
+      "description": "Gürültü engelleme özellikli kablosuz kulaklık",
+      "imageUrl": "https://picsum.photos/id/4/200/300"
+    },
+    {
+      "id": "5",
+      "name": "MacBook Pro M2",
+      "category": "Bilgisayar",
+      "price": 55000,
+      "stock": 10,
+      "description": "Apple M2 işlemcili laptop",
+      "imageUrl": "https://picsum.photos/id/5/200/300"
+    },
+    {
+      "id": "6",
+      "name": "Dell XPS 15",
+      "category": "Bilgisayar",
+      "price": 45000,
+      "stock": 8,
+      "description": "Yüksek performanslı Windows laptop",
+      "imageUrl": "https://picsum.photos/id/6/200/300"
+    },
+    {
+      "id": "7",
+      "name": "iPad Pro",
+      "category": "Tablet",
+      "price": 25000,
+      "stock": 20,
+      "description": "Profesyonel kullanım için tablet",
+      "imageUrl": "https://picsum.photos/id/7/200/300"
+    },
+    {
+      "id": "8",
+      "name": "Anker PowerCore 26800",
+      "category": "Aksesuar",
+      "price": 1200,
+      "stock": 50,
+      "description": "Yüksek kapasiteli taşınabilir şarj cihazı",
+      "imageUrl": "https://picsum.photos/id/8/200/300"
+    },
+    {
+      "id": "9",
+      "name": "Philips Hue",
+      "category": "Akıllı Ev",
+      "price": 1500,
+      "stock": 35,
+      "description": "Akıllı LED aydınlatma sistemi",
+      "imageUrl": "https://picsum.photos/id/9/200/300"
+    },
+    {
+      "id": "10",
+      "name": "Dyson V15",
+      "category": "Ev Elektronik",
+      "price": 18000,
+      "stock": 12,
+      "description": "Kablosuz elektrikli süpürge",
+      "imageUrl": "https://picsum.photos/id/10/200/300"
+    },
+    {
+      "id": "11",
+      "name": "Asus ROG Gaming Laptop",
+      "category": "Bilgisayar",
+      "price": 42000,
+      "stock": 15,
+      "description": "Oyunculara özel yüksek performanslı dizüstü bilgisayar",
+      "imageUrl": "https://picsum.photos/id/11/200/300"
+    },
+    {
+      "id": "12",
+      "name": "LG OLED Smart TV",
+      "category": "Elektronik",
+      "price": 28000,
+      "stock": 18,
+      "description": "4K çözünürlüklü akıllı televizyon",
+      "imageUrl": "https://picsum.photos/id/12/200/300"
+    },
+    {
+      "id": "13",
+      "name": "Bose QuietComfort Kulaklık",
+      "category": "Ses Sistemleri",
+      "price": 6500,
+      "stock": 22,
+      "description": "Üstün ses kalitesine sahip kablosuz kulaklık",
+      "imageUrl": "https://picsum.photos/id/13/200/300"
+    },
+    {
+      "id": "14",
+      "name": "Canon EOS R5",
+      "category": "Fotoğrafçılık",
+      "price": 75000,
+      "stock": 7,
+      "description": "Profesyonel fotoğraf makinesi",
+      "imageUrl": "https://picsum.photos/id/14/200/300"
+    },
+    {
+      "id": "15",
+      "name": "Airpods Pro",
+      "category": "Ses Sistemleri",
+      "price": 7500,
+      "stock": 45,
+      "description": "Apple'ın gürültü engelleme özellikli kulakiçi kulaklıkları",
+      "imageUrl": "https://picsum.photos/id/15/200/300"
+    },
+    {
+      "id": "16",
+      "name": "Samsung Galaxy Tab S9",
+      "category": "Tablet",
+      "price": 18000,
+      "stock": 25,
+      "description": "Samsung'un üst seviye tableti",
+      "imageUrl": "https://picsum.photos/id/16/200/300"
+    },
+    {
+      "id": "17",
+      "name": "JBL Charge 5",
+      "category": "Ses Sistemleri",
+      "price": 3500,
+      "stock": 60,
+      "description": "Taşınabilir Bluetooth hoparlör",
+      "imageUrl": "https://picsum.photos/id/17/200/300"
+    },
+    {
+      "id": "18",
+      "name": "Xiaomi Mi Band 8",
+      "category": "Giyilebilir Teknoloji",
+      "price": 1200,
+      "stock": 80,
+      "description": "Akıllı bileklik",
+      "imageUrl": "https://picsum.photos/id/18/200/300"
+    },
+    {
+      "id": "19",
+      "name": "Nintendo Switch OLED",
+      "category": "Oyun Konsolları",
+      "price": 12000,
+      "stock": 35,
+      "description": "Nintendo'nun taşınabilir oyun konsolu",
+      "imageUrl": "https://picsum.photos/id/19/200/300"
+    },
+    {
+      "id": "20",
+      "name": "HP Neverstop Laser Yazıcı",
+      "category": "Ofis Ürünleri",
+      "price": 4500,
+      "stock": 28,
+      "description": "Ekonomik lazer yazıcı",
+      "imageUrl": "https://picsum.photos/id/20/200/300"
+    },
+    {
+      "id": "21",
+      "name": "DJI Mini 3 Pro",
+      "category": "Drone",
+      "price": 22000,
+      "stock": 12,
+      "description": "Kompakt ve hafif drone",
+      "imageUrl": "https://picsum.photos/id/21/200/300"
+    },
+    {
+      "id": "22",
+      "name": "GoPro Hero 11",
+      "category": "Fotoğrafçılık",
+      "price": 15000,
+      "stock": 20,
+      "description": "Aksiyon kamerası",
+      "imageUrl": "https://picsum.photos/id/22/200/300"
+    },
+    {
+      "id": "23",
+      "name": "MSI Gaming Monitor",
+      "category": "Bilgisayar Aksesuarları",
+      "price": 8500,
+      "stock": 15,
+      "description": "144Hz yüksek tazeleme oranlı oyuncu monitörü",
+      "imageUrl": "https://picsum.photos/id/23/200/300"
+    },
+    {
+      "id": "24",
+      "name": "Fitbit Versa 4",
+      "category": "Giyilebilir Teknoloji",
+      "price": 5800,
+      "stock": 42,
+      "description": "Akıllı saat ve fitness takipçisi",
+      "imageUrl": "https://picsum.photos/id/24/200/300"
+    },
+    {
+      "id": "25",
+      "name": "Robot Süpürge",
+      "category": "Ev Elektronik",
+      "price": 8000,
+      "stock": 30,
+      "description": "Akıllı temizlik robotu",
+      "imageUrl": "https://picsum.photos/id/25/200/300"
+    }
+  ]
+}

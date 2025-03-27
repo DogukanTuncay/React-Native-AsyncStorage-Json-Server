@@ -1,39 +1,84 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { ThemeProvider } from '../context/ThemeContext';
+import { AuthProvider } from '../context/AuthContext';
+import { AppTheme } from '../components/theme/AppTheme';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+console.log('Ana layout yükleniyor...');
+
+// Uygulama hazır olana kadar splash screen'i göster
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
+  const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    ...FontAwesome.font,
   });
 
+  // Fontlar yüklendiğinde splash screen'i gizle
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
+      console.log('Fontlar yüklendi ve Splash Screen kapatıldı');
     }
-  }, [loaded]);
+    if (error) {
+      console.error('Font yükleme hatası:', error);
+    }
+  }, [loaded, error]);
 
   if (!loaded) {
     return null;
   }
 
+  return <RootLayoutNav />;
+}
+
+function RootLayoutNav() {
+  console.log('Root Layout Navigation oluşturuluyor');
+  
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
+    <ThemeProvider>
+      <AuthProvider>
+        <AppTheme>
+          <Stack
+            screenOptions={{
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            <Stack.Screen 
+              name="(auth)/login" 
+              options={{ 
+                headerShown: false,
+                // Auth sayfaları için geri dolaşım engellenmiş
+                gestureEnabled: false,
+              }} 
+            />
+            <Stack.Screen 
+              name="(tabs)" 
+              options={{ 
+                headerShown: false,
+                // Ana sayfalarda geri dolaşım yok
+                gestureEnabled: false,
+              }} 
+            />
+            <Stack.Screen 
+              name="product/[id]" 
+              options={{
+                headerShown: true,
+                headerTitle: "Ürün Detayı",
+                headerBackTitle: "Geri",
+                animation: "slide_from_right"
+              }} 
+            />
+          </Stack>
+        </AppTheme>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
