@@ -416,37 +416,38 @@ export default function ProductsScreen() {
                 style={styles.searchBar}
               />
               
-              <View style={styles.filterContainer}>
-                <Chip 
-                  mode="outlined" 
-                  icon="sort"
-                  onPress={() => setSortMenuVisible(true)}
-                  style={styles.filterChip}
-                  compact
-                >
-                  {sortBy.label}
-                </Chip>
-                
-                <Chip
-                  mode="outlined"
-                  icon="filter-variant-plus"
-                  onPress={() => setFilterDialogVisible(true)}
-                  style={styles.filterChip}
-                  compact
-                >
-                  Filtrele
-                </Chip>
-                
-                <Chip 
-                  mode="outlined" 
-                  icon="filter-variant"
-                  onPress={() => setAdvancedFilterVisible(true)}
-                  style={styles.filterChip}
-                  compact
-                >
-                  Gelişmiş
-                </Chip>
-              </View>
+              <View style={styles.actionButtons}>
+              <Button
+    mode="outlined"
+    icon="sort"
+    onPress={() => setSortMenuVisible(true)}
+    style={styles.actionButton}
+    compact
+  >
+    {sortBy.label}
+  </Button>
+
+  <Button
+    mode="outlined"
+    icon="filter-variant-plus"
+    onPress={() => setFilterDialogVisible(true)}
+    style={styles.actionButton}
+    compact
+  >
+    Filtrele
+  </Button>
+
+  <Button
+    mode="outlined"
+    icon="filter-variant"
+    onPress={() => setAdvancedFilterVisible(true)}
+    style={styles.actionButton}
+    compact
+  >
+    Gelişmiş
+  </Button>
+</View>
+
               
               {/* Aktif filtreler */}
               {filters.length > 0 && (
@@ -854,5 +855,15 @@ const styles = StyleSheet.create({
     padding: 16,
     borderTopWidth: 1,
     borderTopColor: '#eee',
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8, // Eğer 'gap' desteklemiyorsa aşağıda alternatif vereceğim
+    marginBottom: 8,
+  },
+  actionButton: {
+    marginRight: 8,
+    marginBottom: 8,
   },
 });

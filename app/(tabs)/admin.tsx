@@ -71,6 +71,7 @@ export default function AdminScreen() {
   const [activeFilters, setActiveFilters] = useState<Array<{field: string, operator: string, value: string}>>([]);
   const [totalItems, setTotalItems] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const theme = useTheme();
   const { user, isAdmin, isLoading } = useAuth();
@@ -369,24 +370,36 @@ export default function AdminScreen() {
   // Ürün formunu gönder (ekleme veya güncelleme)
   const handleSubmitProduct = async () => {
     try {
-      if (!currentProduct.name || !currentProduct.category) {
-        showSnackbar('Lütfen tüm zorunlu alanları doldurun', 'error');
-        return;
-      }
+      const newErrors: { [key: string]: string } = {};
 
-      // ID kontrolü
-      if (currentProduct.id) {
-        const idNumber = parseInt(currentProduct.id.toString());
-        if (isNaN(idNumber) || idNumber > 999999 || idNumber < 1) {
-          showSnackbar('ID 1 ile 999999 arasında olmalıdır', 'error');
-          return;
-        }
-      }
+     if (!currentProduct.name) {
+       newErrors.name = "Ürün adı gerekli";
+     }
+     if (!currentProduct.category) {
+       newErrors.category = "Kategori gerekli";
+     }
+     if (!currentProduct.price || currentProduct.price <= 0) {
+       newErrors.price = "Geçerli bir fiyat girin";
+     }
+     if (!currentProduct.stock || currentProduct.stock < 0) {
+       newErrors.stock = "Geçerli bir stok miktarı girin";
+     }
+   
+     if (Object.keys(newErrors).length > 0) {
+       setErrors(newErrors);
+       return;
+     }
+
+  // Hata yoksa kaydet
+  setErrors({});
+  // Buraya ürünü kaydetme işlemini koyuyorsun
+  console.log('Ürün kaydedildi:', currentProduct);
+  setDialogVisible(false);
 
       setDialogVisible(false);
 
       if (isCreating) {
-        // Yeni ürün ekle
+        // Yeni ürün eklezIndex: 1000, // Üstte çıksın diye
         await addProduct(currentProduct as Omit<Product, 'id'>);
         showSnackbar('Ürün başarıyla eklendi', 'success');
       } else {
@@ -741,7 +754,7 @@ export default function AdminScreen() {
               
               <View style={styles.actionButtons}>
                 <Button
-                  mode="contained-tonal"
+                  mode="outlined"
                   icon="sort"
                   onPress={showSortMenu}
                   style={styles.actionButton}
@@ -750,7 +763,7 @@ export default function AdminScreen() {
                 </Button>
                 
                 <Button
-                  mode="contained-tonal"
+                  mode="outlined"
                   icon="filter-variant"
                   onPress={() => setFilterDialogVisible(true)}
                   style={styles.actionButton}
@@ -1055,10 +1068,8 @@ export default function AdminScreen() {
                 onChangeText={(text) => {
                   // Sadece sayıları kabul et ve maksimum 6 haneli olmasını sağla
                   const numericValue = text.replace(/[^0-9]/g, '').slice(0, 6);
-                  setCurrentProduct(prev => ({ 
-                    ...prev, 
-                    id: numericValue || undefined 
-                  }));
+                  setCurrentProduct({ ...currentProduct, name: text });
+                  setErrors(prev => ({ ...prev, name: '' })); // Kullanıcı yazınca hata kaybolsun
                 }}
                 keyboardType="numeric"
                 maxLength={6}
@@ -1069,35 +1080,61 @@ export default function AdminScreen() {
               <TextInput
                 label="Ürün Adı *"
                 value={currentProduct.name?.toString() || ''}
-                onChangeText={(text) => setCurrentProduct({ ...currentProduct, name: text })}
+                onChangeText={(text) => {
+                  setCurrentProduct({ ...currentProduct, name: text });
+                  setErrors(prev => ({ ...prev, name: '' })); // Kullanıcı yazınca hata sil
+                }}
                 mode="outlined"
                 style={styles.input}
+                error={!!errors.name}
               />
+              {errors.name && <Text style={styles.errorText}>{errors.name}</Text>}
               <TextInput
                 label="Kategori *"
                 value={currentProduct.category?.toString() || ''}
-                onChangeText={(text) => setCurrentProduct({ ...currentProduct, category: text })}
+                onChangeText={(text) => {
+                  setCurrentProduct({ ...currentProduct, category: text });
+                  setErrors(prev => ({ ...prev, category: '' }));
+                }}
                 mode="outlined"
                 style={styles.input}
+                error={!!errors.category}
               />
+              {errors.category && <Text style={styles.errorText}>{errors.category}</Text>}
+              
               <View style={styles.rowInputs}>
-                <TextInput
-                  label="Fiyat *"
-                  value={currentProduct.price?.toString() || ''}
-                  onChangeText={(text) => setCurrentProduct({ ...currentProduct, price: parseFloat(text) || 0 })}
-                  mode="outlined"
-                  keyboardType="numeric"
-                  style={[styles.input, { flex: 1, marginRight: 8 }]}
-                  right={<TextInput.Affix text="₺" />}
-                />
-                <TextInput
-                  label="Stok *"
-                  value={currentProduct.stock?.toString() || ''}
-                  onChangeText={(text) => setCurrentProduct({ ...currentProduct, stock: parseInt(text) || 0 })}
-                  mode="outlined"
-                  keyboardType="numeric"
-                  style={[styles.input, { flex: 1 }]}
-                />
+                <View style={{ flex: 1, marginRight: 8 }}>
+                  <TextInput
+                    label="Fiyat *"
+                    value={currentProduct.price?.toString() || ''}
+                    onChangeText={(text) => {
+                      setCurrentProduct({ ...currentProduct, price: parseFloat(text) || 0 });
+                      setErrors(prev => ({ ...prev, price: '' }));
+                    }}
+                    mode="outlined"
+                    keyboardType="numeric"
+                    style={styles.input}
+                    right={<TextInput.Affix text="₺" />}
+                    error={!!errors.price}
+                  />
+                  {errors.price && <Text style={styles.errorText}>{errors.price}</Text>}
+                </View>
+                  
+                <View style={{ flex: 1 }}>
+                  <TextInput
+                    label="Stok *"
+                    value={currentProduct.stock?.toString() || ''}
+                    onChangeText={(text) => {
+                      setCurrentProduct({ ...currentProduct, stock: parseInt(text) || 0 });
+                      setErrors(prev => ({ ...prev, stock: '' }));
+                    }}
+                    mode="outlined"
+                    keyboardType="numeric"
+                    style={styles.input}
+                    error={!!errors.stock}
+                  />
+                  {errors.stock && <Text style={styles.errorText}>{errors.stock}</Text>}
+                </View>
               </View>
               <TextInput
                 label="Açıklama"
@@ -1188,6 +1225,7 @@ export default function AdminScreen() {
         onDismiss={() => setSnackbarVisible(false)}
         duration={3000}
         style={[
+          
           styles.snackbar,
           snackbarType === 'success' ? styles.successSnackbar : 
           snackbarType === 'error' ? styles.errorSnackbar : 
@@ -1226,6 +1264,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     marginBottom: 8,
   },
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginBottom: 8,
+    marginLeft: 4,
+  },
+  
   headerSubtitle: {
     opacity: 0.7,
   },
@@ -1456,6 +1501,9 @@ const styles = StyleSheet.create({
   snackbar: {
     bottom: 16,
     elevation: 4,
+    top: 20,
+    alignSelf: 'center',
+    zIndex: 1000, // Üstte çıksın diye
   },
   successSnackbar: {
     backgroundColor: 'rgba(76, 175, 80, 0.9)',

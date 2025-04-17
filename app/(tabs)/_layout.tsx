@@ -93,6 +93,16 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />
+      {/* Dökümantasyon sekmesi */}
+      <Tabs.Screen
+        name="documentation"
+        options={{
+          title: 'Dökümantasyon',
+          tabBarIcon: ({ color }) => <TabBarIcon name="file-text" color={color} />, // FontAwesome'dan 'file-text' simgesi
+        }}
+      />
     </Tabs>
+
+    
   );
 }

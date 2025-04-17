@@ -45,15 +45,6 @@
       "imageUrl": "https://picsum.photos/id/3/200/300"
     },
     {
-      "id": "4",
-      "name": "Sony WH-1000XM5",
-      "category": "Ses Sistemleri",
-      "price": 8000,
-      "stock": 15,
-      "description": "Gürültü engelleme özellikli kablosuz kulaklık",
-      "imageUrl": "https://picsum.photos/id/4/200/300"
-    },
-    {
       "id": "5",
       "name": "MacBook Pro M2",
       "category": "Bilgisayar",
@@ -235,12 +226,22 @@
     },
     {
       "id": "25",
-      "name": "Robot Süpürge",
+      "name": "Robot Süpürgem",
       "category": "Ev Elektronik",
       "price": 8000,
       "stock": 30,
       "description": "Akıllı temizlik robotu",
-      "imageUrl": "https://picsum.photos/id/25/200/300"
+      "imageUrl": "https://picsum.photos/id/25/200/300",
+      "uniqueId": "25-p1-10-price-asc"
+    },
+    {
+      "id": "1238",
+      "name": "Test urun",
+      "category": "teknoloji",
+      "price": 50000,
+      "stock": 20,
+      "description": "Bu urunu al",
+      "imageUrl": "https://picsum.photos/id/1/200/300"
     }
   ]
 }
