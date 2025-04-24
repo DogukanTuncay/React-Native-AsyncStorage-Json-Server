@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs, Slot } from 'expo-router';
 import { View } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { router, usePathname } from 'expo-router';
 import { useAuth } from '../../context/AuthContext';
+import { FontAwesome } from '@expo/vector-icons';
 
 console.log('Tab Layout yükleniyor...');
 

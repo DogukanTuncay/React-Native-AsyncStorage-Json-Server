@@ -242,6 +242,15 @@
       "stock": 20,
       "description": "Bu urunu al",
       "imageUrl": "https://picsum.photos/id/1/200/300"
+    },
+    {
+      "id": "72b2",
+      "name": "Test",
+      "category": "Kategori",
+      "price": 500,
+      "stock": 50,
+      "description": "",
+      "imageUrl": "https://picsum.photos/id/1/200/300"
     }
   ]
 }
